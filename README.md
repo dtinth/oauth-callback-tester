@@ -2,10 +2,6 @@
 
 A minimalistic, static OAuth callback testing tool that supports multiple OAuth flows and response modes.
 
-**Live URL:** <https://oauth-callback-tester.vercel.app/>
-
-Built with v0.dev.
-
 ## Features
 
 - **Multiple OAuth Flows**: Authorization Code, Implicit, OIDC, PKCE
@@ -24,23 +20,28 @@ Built with v0.dev.
 
 ## Deployment
 
-This is a static Next.js app configured for export.
+This is a static Next.js app configured for export. You can deploy it to:
+
+- **Vercel**: Push to GitHub and connect to Vercel (automatic static export)
+- **Netlify**: Deploy from GitHub or drag-and-drop the `out` folder
+- **GitHub Pages**: Build and deploy the `out` folder
+- **Any static host**: Upload the contents of the `out` folder
 
 ### Build for Static Export
 
-```bash
+\`\`\`bash
 npm install
 npm run build
-```
+\`\`\`
 
 The static files will be in the `out` directory.
 
 ## Development
 
-```bash
+\`\`\`bash
 npm install
 npm run dev
-```
+\`\`\`
 
 Open [http://localhost:3000](http://localhost:3000) to view the app.
 
