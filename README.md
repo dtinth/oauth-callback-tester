@@ -1,30 +1,54 @@
-# OAuth callback tester
+# OAuth Callback Tester
 
-*Automatically synced with your [v0.app](https://v0.app) deployments*
+A minimalistic, static OAuth callback testing tool that supports multiple OAuth flows and response modes.
 
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/dtinths-projects/v0-oa-uth-callback-tester)
-[![Built with v0](https://img.shields.io/badge/Built%20with-v0.app-black?style=for-the-badge)](https://v0.app/chat/projects/blbqe3cPlnN)
+## Features
 
-## Overview
+- **Multiple OAuth Flows**: Authorization Code, Implicit, OIDC, PKCE
+- **Multiple Response Modes**: Query parameters and URL fragments
+- **JWT Decoding**: Automatically decodes JWTs and displays headers and claims
+- **Copy to Clipboard**: Easy copying of individual parameters
+- **Static Deployment**: No server-side code, deployable anywhere
+- **Fast Loading**: Minimal dependencies, optimized for speed
 
-This repository will stay in sync with your deployed chats on [v0.app](https://v0.app).
-Any changes you make to your deployed app will be automatically pushed to this repository from [v0.app](https://v0.app).
+## Usage
+
+1. Deploy this app to any static hosting service
+2. Use the deployed URL as your OAuth callback URI in your OAuth provider settings
+3. When OAuth redirects to your callback URL, all parameters will be displayed
+4. If no parameters are present, the app shows setup instructions with your callback URL
 
 ## Deployment
 
-Your project is live at:
+This is a static Next.js app configured for export. You can deploy it to:
 
-**[https://vercel.com/dtinths-projects/v0-oa-uth-callback-tester](https://vercel.com/dtinths-projects/v0-oa-uth-callback-tester)**
+- **Vercel**: Push to GitHub and connect to Vercel (automatic static export)
+- **Netlify**: Deploy from GitHub or drag-and-drop the `out` folder
+- **GitHub Pages**: Build and deploy the `out` folder
+- **Any static host**: Upload the contents of the `out` folder
 
-## Build your app
+### Build for Static Export
 
-Continue building your app on:
+\`\`\`bash
+npm install
+npm run build
+\`\`\`
 
-**[https://v0.app/chat/projects/blbqe3cPlnN](https://v0.app/chat/projects/blbqe3cPlnN)**
+The static files will be in the `out` directory.
+
+## Development
+
+\`\`\`bash
+npm install
+npm run dev
+\`\`\`
+
+Open [http://localhost:3000](http://localhost:3000) to view the app.
 
 ## How It Works
 
-1. Create and modify your project using [v0.app](https://v0.app)
-2. Deploy your chats from the v0 interface
-3. Changes are automatically pushed to this repository
-4. Vercel deploys the latest version from this repository
+The app runs entirely in the browser:
+- Reads URL parameters from both query string and hash fragment
+- Detects and decodes JWT tokens (id_token, access_token)
+- Displays all OAuth parameters with copy functionality
+- No server-side processing or data storage
