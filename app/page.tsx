@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
-import { Check, Copy, ExternalLink } from "lucide-react"
+import { Check, Copy } from "lucide-react"
 
 interface DecodedJWT {
   header: Record<string, unknown>
@@ -72,14 +72,6 @@ export default function OAuthCallbackPage() {
     setTimeout(() => setCopiedKey(null), 2000)
   }
 
-  const isJWT = (value: string): boolean => {
-    return typeof value === "string" && value.split(".").length === 3
-  }
-
-  const openInJwtIo = (token: string) => {
-    window.open(`https://www.jwt.io/#id_token=${encodeURIComponent(token)}`, "_blank")
-  }
-
   const hasParams = Object.keys(params).length > 0
 
   return (
@@ -122,17 +114,9 @@ export default function OAuthCallbackPage() {
                   <div key={key} className="space-y-1">
                     <div className="flex items-center justify-between">
                       <span className="text-sm font-medium">{key}</span>
-                      <div className="flex items-center gap-1">
-                        {isJWT(value) && (
-                          <Button variant="ghost" size="sm" onClick={() => openInJwtIo(value)}>
-                            <ExternalLink className="h-4 w-4 mr-1" />
-                            jwt.io
-                          </Button>
-                        )}
-                        <Button variant="ghost" size="sm" onClick={() => copyToClipboard(value, key)}>
-                          {copiedKey === key ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
-                        </Button>
-                      </div>
+                      <Button variant="ghost" size="sm" onClick={() => copyToClipboard(value, key)}>
+                        {copiedKey === key ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
+                      </Button>
                     </div>
                     <code className="block rounded bg-muted px-3 py-2 text-xs font-mono break-all">{value}</code>
                   </div>
